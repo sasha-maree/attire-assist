@@ -144,3 +144,6 @@ vite.config.ts.timestamp-*
 
 # Local IDE settings
 .idea/
+
+# Generated Next.js type references
+next-env.d.ts
