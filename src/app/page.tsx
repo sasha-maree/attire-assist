@@ -1,6 +1,6 @@
 import ShopCard from "@/components/ShopCard";
 import { mockShopAdapter } from "@/integrations/attire-rentz/mock-shop-adapter";
-
+import { env } from "@/config/env";
 
 export default async function Home() {
     const shops = await mockShopAdapter.listShops();
@@ -19,6 +19,10 @@ export default async function Home() {
                 <p className="mt-6 text-lg text-slate-300">
                     Find shop information, explore rental options, and connect
                     with staff.
+                </p>
+
+                <p className="mt-4 rounded-lg border border-slate-700 p-3 text-sm text-slate-300">
+                    Configured AI mode: {env.aiMode}. Chat replies are not connected yet.
                 </p>
 
                 {shops.map((shop) => (
