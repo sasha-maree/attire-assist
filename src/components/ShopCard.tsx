@@ -1,12 +1,9 @@
 "use client";
 
 import {useState} from "react";
+import type { Shop } from "@/types/shop";
 
-type ShopCardProps = {
-    name: string;
-    city: string;
-    description: string;
-};
+type ShopCardProps = Pick<Shop, "name" | "city" | "description">;
 
 export default function ShopCard({
                                      name,

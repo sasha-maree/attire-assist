@@ -1,20 +1,7 @@
 import ShopCard from "@/components/ShopCard";
+import { mockShops } from "@/data/mock-shops";
 
 export default function Home() {
-    const shops = [
-        {
-            id: "velvet-rentals",
-            name: "Velvet Rentals",
-            city: "Colombo",
-            description: "Outfits for weddings, celebrations, and special occasions.",
-        },
-        {
-            id: "classic-closet",
-            name: "Classic Closet",
-            city: "Kandy",
-            description: "Suits and formalwear for your special occasions.",
-        },
-    ];
     return (
         <main className="min-h-screen bg-slate-950 px-6 py-20 text-white">
             <div className="mx-auto max-w-2xl">
@@ -31,7 +18,7 @@ export default function Home() {
                     with staff.
                 </p>
 
-                {shops.map((shop) => (
+                {mockShops.map((shop) => (
                     <ShopCard
                         key={shop.id}
                         name={shop.name}
