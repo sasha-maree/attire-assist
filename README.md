@@ -43,6 +43,33 @@ Open http://localhost:3000, or the address printed in the terminal.
 
 Keep the server running while developing. Press Ctrl+C to stop it.
 
+## Environment configuration
+
+To create your local settings file on a new checkout, run:
+
+```powershell
+Copy-Item .env.example .env.local
+```
+
+Skip this command if you already have a .env.local file.
+
+The currently supported setting is:
+
+```dotenv
+AI_MODE=mock
+```
+
+If AI_MODE is missing, the application defaults to mock mode.
+Unsupported values cause a configuration error.
+
+This setting prepares the application for mock AI responses;
+chat replies are not implemented yet. No API key is required.
+
+.env.example is committed as a safe configuration template.
+.env.local is ignored by Git and must not be committed.
+
+Restart the development server after changing environment settings.
+
 ## Project checks
 
 Run these in a separate terminal while the development server is running,
