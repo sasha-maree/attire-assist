@@ -51,15 +51,18 @@ or after stopping it:
 ```powershell
 npm run lint
 npm run typecheck
+npm test
 npm run build
 ```
 
 - lint checks for code-quality issues.
 - typecheck generates Next.js types and checks TypeScript.
+- test runs automated tests for the mock shop adapter.
 - build creates a production build.
 
 GitHub Actions also runs these checks on pushes and pull requests
-targeting main. There is no automated test suite yet.
+targeting main. The current tests cover shop lookup, unknown shop IDs, and protection
+against accidentally changing the original mock data.
 
 ## Git workflow
 

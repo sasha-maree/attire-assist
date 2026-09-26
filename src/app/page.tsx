@@ -1,7 +1,10 @@
 import ShopCard from "@/components/ShopCard";
-import { mockShops } from "@/data/mock-shops";
+import { mockShopAdapter } from "@/integrations/attire-rentz/mock-shop-adapter";
 
-export default function Home() {
+
+export default async function Home() {
+    const shops = await mockShopAdapter.listShops();
+
     return (
         <main className="min-h-screen bg-slate-950 px-6 py-20 text-white">
             <div className="mx-auto max-w-2xl">
@@ -18,7 +21,7 @@ export default function Home() {
                     with staff.
                 </p>
 
-                {mockShops.map((shop) => (
+                {shops.map((shop) => (
                     <ShopCard
                         key={shop.id}
                         name={shop.name}
