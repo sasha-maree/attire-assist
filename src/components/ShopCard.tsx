@@ -2,6 +2,7 @@
 
 import {useState} from "react";
 import type { Shop } from "@/types/shop";
+import ChatPanel from "@/components/ChatPanel";
 
 type ShopCardProps = Pick<Shop, "name" | "city" | "description">;
 
@@ -32,11 +33,7 @@ export default function ShopCard({
                 {isOpen ? "Close assistant" : "Ask assistant"}
             </button>
 
-            {isOpen && (
-                <p className="mt-4 rounded-lg bg-slate-800 p-4 text-slate-200">
-                    Demo placeholder: the automated assistant for {name} is not connected yet.
-                </p>
-            )}
+            {isOpen && <ChatPanel shopName={name} />}
         </section>
     );
 }
