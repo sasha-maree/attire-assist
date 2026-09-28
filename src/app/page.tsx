@@ -22,12 +22,13 @@ export default async function Home() {
                 </p>
 
                 <p className="mt-4 rounded-lg border border-slate-700 p-3 text-sm text-slate-300">
-                    Configured AI mode: {env.aiMode}. Chat replies are not connected yet.
+                    Configured AI mode: {env.aiMode}. Demo replies are available; live AI is not connected.
                 </p>
 
                 {shops.map((shop) => (
                     <ShopCard
                         key={shop.id}
+                        id={shop.id}
                         name={shop.name}
                         city={shop.city}
                         description={shop.description}
