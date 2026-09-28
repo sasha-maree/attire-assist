@@ -7,9 +7,13 @@ designed to integrate with Attire Rentz.
 
 A demo with fictional shop cards and a working mock chat flow.
 
-Customers can send messages to a backend endpoint and receive a fixed
-introduction for the selected shop. Replies are clearly labelled as mock;
-they do not answer questions or call live AI.
+Customers can send messages to a backend endpoint and receive answers
+from the selected shop's fictional FAQs. Replies are clearly labelled
+as mock and do not call live AI.
+
+Matching ignores capitalization and extra whitespace but requires the
+same wording and punctuation. Unknown questions receive an honest
+fallback directing the customer to staff. No staff notification is sent.
 
 The chat shows loading and error feedback and allows retrying failed
 requests. History is held in browser memory and resets when the panel
@@ -90,8 +94,16 @@ Restart the development server after changing environment settings.
 3. Type a message and press Enter or click Send.
 4. Check that the demo reply refers to the selected shop.
 
-Each message receives the same introduction for that shop.
-The mock does not interpret the customer's question.
+Try these questions in both shops:
+
+- Do you offer fittings?
+- Do you offer delivery?
+
+Each shop has different fictional answers. Matching ignores capitalization
+and extra whitespace, but wording and punctuation must otherwise match.
+
+Try "Do you offer free fittings?" to see the unknown-question fallback.
+The demo does not guess an answer or create a staff handover.
 
 If a request fails, the chat displays an error and keeps the draft.
 Click Send again to retry once connectivity is restored.
@@ -112,7 +124,7 @@ npm run build
 
 - lint checks for code-quality issues.
 - typecheck generates Next.js types and checks TypeScript.
-- test runs automated tests for configuration, the mock shop adapter,
+- test runs automated tests for configuration, the mock adapter, FAQ matching,
   mock replies, the conversation service, and the chat endpoint.
 - build creates a production build.
 

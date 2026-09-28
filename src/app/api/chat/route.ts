@@ -29,7 +29,7 @@ export async function POST(request: Request) {
         );
     }
 
-    const reply = await createChatReply(body.shopId);
+    const reply = await createChatReply(body.shopId, body.message);
 
     if (reply === null) {
         return Response.json(

@@ -59,8 +59,7 @@ test("returns 404 for an unknown shop", async () => {
 });
 
 
-// This checks the contract your frontend depends on: status 200, reply text for the requested shop, and mode: "mock".
-test("returns a labelled mock reply for a valid request", async () => {
+test("returns the requested shop's FAQ answer", async () => {
     const request = new Request("http://localhost/api/chat", {
         method: "POST",
         headers: {
@@ -68,7 +67,7 @@ test("returns a labelled mock reply for a valid request", async () => {
         },
         body: JSON.stringify({
             shopId: "classic-closet",
-            message: "Hello",
+            message: "Do you offer fittings?",
         }),
     });
 
@@ -76,7 +75,9 @@ test("returns a labelled mock reply for a valid request", async () => {
 
     expect(response.status).toBe(200);
     expect(await response.json()).toEqual({
-        text: expect.stringContaining("Classic Closet"),
+        text:
+            "Demo reply from Classic Closet: " +
+            "We offer walk-in fittings during shop opening hours.",
         mode: "mock",
     });
 });
