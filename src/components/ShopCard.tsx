@@ -4,9 +4,10 @@ import {useState} from "react";
 import type { Shop } from "@/types/shop";
 import ChatPanel from "@/components/ChatPanel";
 
-type ShopCardProps = Pick<Shop, "name" | "city" | "description">;
+type ShopCardProps = Pick<Shop, "id"| "name" | "city" | "description">;
 
 export default function ShopCard({
+                                     id,
                                      name,
                                      city,
                                      description,
@@ -33,7 +34,7 @@ export default function ShopCard({
                 {isOpen ? "Close assistant" : "Ask assistant"}
             </button>
 
-            {isOpen && <ChatPanel shopName={name} />}
+            {isOpen && <ChatPanel shopId={id} shopName={name} />}
         </section>
     );
 }
