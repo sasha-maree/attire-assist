@@ -91,8 +91,13 @@ Restart the development server after changing environment settings.
 
 1. Open the homepage while the development server is running.
 2. Click Ask assistant on a fictional shop card.
-3. Type a message and press Enter or click Send.
-4. Check that the demo reply refers to the selected shop.
+3. Click a suggested question to fill the input, or type your own message.
+4. Press Enter or click Send.
+5. Check that the demo reply refers to the selected shop.
+
+Suggestions come from the selected shop's FAQs. Clicking a suggestion
+fills the input without sending automatically. Suggestions are disabled
+while a reply is pending.
 
 Try these questions in both shops:
 
