@@ -4,13 +4,16 @@ import {useState} from "react";
 import type { Shop } from "@/types/shop";
 import ChatPanel from "@/components/ChatPanel";
 
-type ShopCardProps = Pick<Shop, "id"| "name" | "city" | "description">;
+type ShopCardProps = Pick<Shop, "id" | "name" | "city" | "description"> & {
+    suggestedQuestions: string[];
+};
 
 export default function ShopCard({
                                      id,
                                      name,
                                      city,
                                      description,
+                                     suggestedQuestions,
                                  }: ShopCardProps) {
     const [isOpen, setIsOpen] = useState(false);
     return (
@@ -34,7 +37,13 @@ export default function ShopCard({
                 {isOpen ? "Close assistant" : "Ask assistant"}
             </button>
 
-            {isOpen && <ChatPanel shopId={id} shopName={name} />}
+            {isOpen && (
+                <ChatPanel
+                    shopId={id}
+                    shopName={name}
+                    suggestedQuestions={suggestedQuestions}
+                />
+            )}
         </section>
     );
 }

@@ -5,6 +5,7 @@ import {useState} from "react";
 type ChatPanelProps = {
     shopId: string;
     shopName: string;
+    suggestedQuestions: string[];
 };
 
 type ChatMessage = {
@@ -13,7 +14,7 @@ type ChatMessage = {
     text: string;
 };
 
-export default function ChatPanel({shopId, shopName}: ChatPanelProps) {
+export default function ChatPanel({shopId, shopName, suggestedQuestions,}: ChatPanelProps) {
     const [draft, setDraft] = useState("");
     const [messages, setMessages] = useState<ChatMessage[]>([]);
     const [isSending, setIsSending] = useState(false);
@@ -120,6 +121,31 @@ export default function ChatPanel({shopId, shopName}: ChatPanelProps) {
                     </ul>
                 )}
             </div>
+
+            {suggestedQuestions.length > 0 && (
+                <div className="mt-4">
+                    <p className="text-sm text-slate-300">
+                        Choose a question, then press Send:
+                    </p>
+
+                    <div className="mt-2 flex flex-wrap gap-2">
+                        {suggestedQuestions.map((question) => (
+                            <button
+                                key={question}
+                                type="button"
+                                onClick={() => {
+                                    setDraft(question);
+                                    setError(null);
+                                }}
+                                disabled={isSending}
+                                className="rounded-lg border border-teal-500 px-3 py-2 text-left text-sm text-teal-300 hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-50"
+                            >
+                                {question}
+                            </button>
+                        ))}
+                    </div>
+                </div>
+            )}
 
             <form
                 onSubmit={(event) => {

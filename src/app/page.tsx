@@ -1,9 +1,21 @@
 import ShopCard from "@/components/ShopCard";
 import { mockShopAdapter } from "@/integrations/attire-rentz/mock-shop-adapter";
+import { mockFaqAdapter } from "@/integrations/attire-rentz/mock-faq-adapter";
 import { env } from "@/config/env";
 
 export default async function Home() {
     const shops = await mockShopAdapter.listShops();
+
+    const shopsWithQuestions = await Promise.all(
+        shops.map(async (shop) => {
+            const faqs = await mockFaqAdapter.listFaqsByShopId(shop.id);
+
+            return {
+                ...shop,
+                suggestedQuestions: faqs.map((faq) => faq.question),
+            };
+        }),
+    );
 
     return (
         <main className="min-h-screen bg-slate-950 px-6 py-20 text-white">
@@ -25,13 +37,14 @@ export default async function Home() {
                     Configured AI mode: {env.aiMode}. Demo replies are available; live AI is not connected.
                 </p>
 
-                {shops.map((shop) => (
+                {shopsWithQuestions.map((shop) => (
                     <ShopCard
                         key={shop.id}
                         id={shop.id}
                         name={shop.name}
                         city={shop.city}
                         description={shop.description}
+                        suggestedQuestions={shop.suggestedQuestions}
                     />
                 ))}
             </div>
