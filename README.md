@@ -169,6 +169,9 @@ manually; there are no automated browser tests yet.
 
 - [Project brief](docs/project-brief.md)
 - [Architecture](docs/architecture.md)
+- [Local database setup](docs/local-database.md)
+- [Conversation storage plan](docs/conversation-storage.md)
+- [Dependency security notes](docs/dependency-security.md)
 
 ## Repository hygiene
 
