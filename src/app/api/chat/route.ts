@@ -1,6 +1,18 @@
 import { createChatReply } from "@/services/conversation-service";
+import { createClient } from "@/lib/supabase/server";
 
 export async function POST(request: Request) {
+    const supabase = await createClient();
+
+    const { data, error } = await supabase.auth.getUser();
+
+    if (error || !data.user) {
+        return Response.json(
+            { error: "Please sign in before sending a message." },
+            { status: 401 },
+        );
+    }
+
     let body: unknown;
 
     try {

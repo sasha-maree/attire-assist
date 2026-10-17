@@ -1,6 +1,7 @@
 "use client";
 
 import {useState} from "react";
+import { ensureCustomerSession } from "@/lib/supabase/ensure-customer-session";
 
 type ChatPanelProps = {
     shopId: string;
@@ -31,6 +32,8 @@ export default function ChatPanel({shopId, shopName, suggestedQuestions,}: ChatP
         setError(null);
 
         try {
+            await ensureCustomerSession();
+
             const response = await fetch("/api/chat", {
                 method: "POST",
                 headers: {
